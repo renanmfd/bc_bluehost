@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Install file for bc_cart module.
+ */
+
+/**
+ * Implements HOOK_schema().
+ */
+function bc_cart_schema() {
+  $schema['cart'] = array(
+    'description' => 'Cart',
+    'fields' => array(
+      'ctid' => array(
+        'description' => 'The primary identifier for a cart.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'The uid of the owner.',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'cpid' => array(
+        'description' => 'The cpid of the cupom.',
+        'type' => 'int',
+      ),
+      'frete' => array(
+        'description' => 'The cpid of the cupom.',
+        'type' => 'float',
+      ),
+      'created' => array(
+        'description' => 'Timestamp of when the cupom was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'changed' => array(
+        'description' => 'Timestamp of when the cupom was last changed.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'data' => array(
+        'description' => 'General information on the cart.',
+        'type' => 'blob',
+      ),
+    ),
+    'indexes' => array(
+      'cart_created' => array('created'),
+      'cart_changed' => array('changed'),
+    ),
+    'primary key' => array('ctid'),
+  );
+
+  $schema['cart_item'] = array(
+    'description' => 'Cart Item',
+    'fields' => array(
+      'ciid' => array(
+        'description' => 'The primary identifier for a cart item.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'ctid' => array(
+        'description' => 'The uid of the cart this item belongs to.',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'status' => array(
+        'description' => 'Status of the item.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'quantity' => array(
+        'description' => 'Quantity of the item.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'created' => array(
+        'description' => 'Timestamp of when the cupom item was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'indexes' => array(
+      'cart_item_created' => array('created'),
+    ),
+    'primary key' => array('ciid'),
+  );
+
+  return $schema;
+}

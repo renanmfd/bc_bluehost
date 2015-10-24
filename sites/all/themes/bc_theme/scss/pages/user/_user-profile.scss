@@ -1,0 +1,9 @@
+.page-user {
+  .tabs {
+    display: none;
+  }
+
+  &.admin-menu .tabs {
+    display: block;
+  }
+}
