@@ -7,6 +7,7 @@ sites/*/files
 sites/*/private
 portifolio/
 extra/
+dev/
 
 # Ignore default text files
 robots.txt
